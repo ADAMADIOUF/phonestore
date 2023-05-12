@@ -1,0 +1,59 @@
+import { getLocalStorage } from '../utils/localStorage'
+import React, { useEffect } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { listProductDetails } from '../actions/productAction'
+import Loading from './Loading'
+import Error from './Error'
+import ProductImages from './ProductImages'
+import { PRODUCT_DETAILS_SUCCESS } from '../constants/productConstant'
+
+const SingleProduct = () => {
+  const { id } = useParams()
+  const dispatch = useDispatch()
+
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, product } = productDetails
+
+  useEffect(() => {
+    const cachedProduct = getLocalStorage(`product_${id}`)
+    if (cachedProduct) {
+      dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: cachedProduct })
+    } else {
+      dispatch(listProductDetails(id, true))
+    }
+  }, [dispatch, id])
+
+  const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location])
+
+  if (loading) {
+    return <Loading />
+  }
+
+  if (error) {
+    return <Error>{error}</Error>
+  }
+
+  const productImages = product && product.img ? product.img : []
+
+  return (
+    <div className='section-center single-product-container'>
+      <div className='container-singleProduct'>
+        <div>
+          <ProductImages images={productImages} />
+        </div>
+        <div>
+          <h1 className='product-name'>{product.name}</h1>
+          <p className='product-description'>{product.description}</p>
+          <p className='product-price'>{product.price}</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default SingleProduct
