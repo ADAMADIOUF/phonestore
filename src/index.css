@@ -793,8 +793,7 @@ button[type='submit']:hover {
   background-color: darkgreen;
   cursor: pointer;
 }
-
-* sliderImage */
+/* Slider */
 .slider {
   position: relative;
   width: 100%;
