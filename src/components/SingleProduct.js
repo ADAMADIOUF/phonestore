@@ -1,7 +1,5 @@
 import WhatsAppWidget from './Whatsapp'
 import 'react-whatsapp-widget/dist/index.css'
-
-
 import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,7 +22,6 @@ const SingleProduct = () => {
   }, [dispatch, id])
 
   const location = useLocation()
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [location])

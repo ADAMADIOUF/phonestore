@@ -3,7 +3,7 @@ import { listProducts } from '../actions/productAction'
 import { useDispatch, useSelector } from 'react-redux'
 import Error from './Error'
 import Loading from './Loading'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import BannerShop from './BannerShop'
 import { formatPrice } from '../utils/helpers'
 
@@ -11,8 +11,12 @@ const Shop = () => {
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList)
   const {  products, loading, error } = productList
+const location = useLocation()
+useEffect(() => {
+  window.scrollTo(0, 0)
+}, [location])
 
-  // Call the fetchProducts action creator when the component mounts
+  
   useEffect(() => {
     dispatch(listProducts())
   }, [dispatch])
