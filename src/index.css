@@ -632,9 +632,8 @@ p {
 }
 
 .product-description {
-  flex-basis: 100%;
-  font-size: 16px;
-  margin-bottom: 10px;
+  font-size: 1rem;
+ 
 }
 
 .product-price {
@@ -672,14 +671,14 @@ p {
 .gallery {
   display: flex;
   overflow-x: auto;
-  gap: 10px; /* Adjust the gap as needed */
+  gap: 1px; /* Adjust the gap as needed */
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
 }
 
 .gallery img {
-  width: 100px; /* Adjust the size as needed */
-  height: 100px; /* Adjust the size as needed */
+  width: 80px; /* Adjust the size as needed */
+  height: 80px; /* Adjust the size as needed */
   
   cursor: pointer;
   scroll-snap-align: center;
